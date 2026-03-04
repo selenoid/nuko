@@ -1,16 +1,16 @@
 {
   "expo": {
-    "name": "singubell",
-    "slug": "singubell",
+    "name": "nuko",
+    "slug": "nuko",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "singubell",
+    "scheme": "nuko",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.singubell"
+      "bundleIdentifier": "com.anonymous.nuko"
     },
     "android": {
       "adaptiveIcon": {
@@ -21,7 +21,7 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.anonymous.singubell"
+      "package": "com.anonymous.nuko"
     },
     "web": {
       "output": "static",

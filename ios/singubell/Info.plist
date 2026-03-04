@@ -7,7 +7,7 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>$(DEVELOPMENT_LANGUAGE)</string>
     <key>CFBundleDisplayName</key>
-    <string>singubell</string>
+    <string>nuko</string>
     <key>CFBundleExecutable</key>
     <string>$(EXECUTABLE_NAME)</string>
     <key>CFBundleIdentifier</key>
@@ -27,8 +27,8 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>singubell</string>
-          <string>com.anonymous.singubell</string>
+          <string>nuko</string>
+          <string>com.anonymous.nuko</string>
         </array>
       </dict>
     </array>

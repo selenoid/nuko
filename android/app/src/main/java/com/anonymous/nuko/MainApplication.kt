@@ -1,4 +1,4 @@
-package com.anonymous.singubell
+package com.anonymous.nuko
 
 import android.app.Application
 import android.content.res.Configuration

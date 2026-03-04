@@ -87,9 +87,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.anonymous.singubell'
+    namespace 'com.anonymous.nuko'
     defaultConfig {
-        applicationId 'com.anonymous.singubell'
+        applicationId 'com.anonymous.nuko'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
