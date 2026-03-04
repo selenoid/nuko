@@ -8,12 +8,12 @@ import { store } from './store/store'
 export default function RootLayout() {
   return (
     <>
-      <Stack>
-        <Provider store={store}>
+      <Provider store={store}>
+        <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Provider>
-      </Stack>
-      <StatusBar style="auto" />
+        </Stack>
+        <StatusBar style="auto" />
+      </Provider>
     </>
   );
 }

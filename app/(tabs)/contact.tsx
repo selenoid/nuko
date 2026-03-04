@@ -1,13 +1,26 @@
 import { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux'
+import { increment } from '../features/counterSlice'
+import type { RootState, AppDispatch } from '../store/store'
+import { StyleSheet, Text, View } from 'react-native';
 import Button from '../components/Button';
 import Header from '../components/Header';
 import InputForm from '../components/InputForm';
 import { REGEX_VAULT } from '../constants';
 import { UserData } from '../types/UserData';
+import { pokemonApi } from '../posts/postsApiSlice'
+import { Label } from '@react-navigation/elements';
 // import validateInput from '../assets/util/validateInput'
 
-export default function AboutScreen() {
+export default function ContactScreen() {
+  const useGetPokemonByNameQuery = pokemonApi.endpoints.getPokemonByName.useQuery
+
+  /* const pokemonData = useGetPokemonByNameQuery('pikachu') */
+  const { data: pokemonData, error, isLoading } = useGetPokemonByNameQuery('bulbasaur')
+
+
+  const value = useSelector((state: RootState) => state.counter.value)
+  const dispatch = useDispatch<AppDispatch>()
 
   const user: UserData | undefined = { name: '', email: '' }
   const [data, setData] = useState<UserData>(user);
@@ -31,7 +44,8 @@ export default function AboutScreen() {
   }
 
   function submit() {
-    console.log('submit..[data]', data)
+    console.log('\n\nsubmit..[data]', data)
+    dispatch(increment())
 
     const mailRegex = REGEX_VAULT.emailRegex;
     const nameRegex = REGEX_VAULT.fullnameRegex;
@@ -56,13 +70,19 @@ export default function AboutScreen() {
     console.log('data changed: ', data)
   }, [data])
 
+  useEffect(() => {
+    console.log('pokemonData changed: ', pokemonData)
+  }, [pokemonData])
+
   return (
     <View style={styles.container}>
-      {/* <Text style={styles.header}>About Contact</Text> */}
-      <Header label={'Contact Us!'} />
+      <View>
+        <Text style={styles.text}>isLoading: {isLoading ? 'Loading...' : 'isLoaded'}</Text>
+        <Text style={styles.text}>Error: {error ? JSON.stringify(error) : 'None'}</Text>
+      </View>
+      <Header label={'Contact Us! [v]:' + value} />
 
       <InputForm placeHolder={'Enter your name'}
-
         onChange={onChangeHandler}
         autoCorrection={false}
         id={'name'} />
@@ -70,7 +90,6 @@ export default function AboutScreen() {
         onChange={onChangeHandler}
         autoCorrection={true}
         keyboardType='email-address' id={'email'}        /* onChange={function (): void {console.log('mail...');} } */ />
-
       <Button theme="primary" label={'Submit'} onPress={submit} />
     </View>
   );
@@ -91,5 +110,9 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 20,
     fontWeight: 500
+  },
+  text: {
+    fontSize: 26,
+    color: '#ccc',
   }
 });
