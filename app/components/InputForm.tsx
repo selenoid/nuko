@@ -1,11 +1,12 @@
 // import { useEffect, useState } from 'react';
 import { StyleSheet, TextInput } from 'react-native';
+import { UserData } from '../types/UserData';
 
 type Props = {
   id: 'name'|'email',
   placeHolder: string,
   autoCorrection: boolean,
-  onChange: (name: keyof UserData , email: string) => void,
+  onChange: (id: keyof UserData , text: string) => void,
   keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad' | 'ascii-capable' | 'url' | 'decimal-pad'
 };
 
@@ -13,8 +14,8 @@ export default function InputForm({id, placeHolder, autoCorrection, keyboardType
   //
   return (
     <TextInput style={styles.input} 
-      onChangeText={(e)=>{
-        onChange(id, e)
+      onChangeText={(text)=>{
+        onChange(id, text)
       }}
       autoCorrect = { autoCorrection }
       keyboardType= { keyboardType }

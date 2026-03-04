@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import InputForm from '../components/InputForm';
 import { REGEX_VAULT } from '../constants';
 import { UserData } from '../types/UserData';
+import validateInput from '../assets/util/validateInput'
 
 export default function AboutScreen() {
 
@@ -35,18 +36,19 @@ export default function AboutScreen() {
     const mailRegex = REGEX_VAULT.emailRegex;
     const nameRegex = REGEX_VAULT.fullnameRegex;
 
+    // validateInput(data.name, nameRegex, null, 'test') //feedbackElement, type)
+
     if (!data?.name || !nameRegex.test(data.name)) {
-      console.log('check name.')
+      console.log('\x1b[31m check name.')
       return
     }
-    console.log('name legit!')
+    console.log('\x1b[32m name legit!')
 
     if (!data?.email || !mailRegex.test(data.email)) {
-      console.log('check e-mail.')
+      console.log('\x1b[31m check e-mail.')
       return
     }
-    console.log('e-mail legit!')
-
+    console.log('\x1b[32m e-mail legit!')
     console.log('sending data: ', data)
   }
 

@@ -1,8 +1,10 @@
+
 export default function validateInput(input, regex, feedbackElement, type) {
     console.log('validating input...', input, regex, feedbackElement, type);
-
+    debugger
     function getErrorMessage (type) {
-        // (t) ? t(`invalid_${type}`) : (`invalid_${type}`)
+        const t = t(`invalid_${type}`)
+        // return (t) ? t(`invalid_${type}`) : (`invalid_${type}`)
     }
 
     const value = input.value.trim();
