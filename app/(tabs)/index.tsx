@@ -41,7 +41,7 @@ export default function Index() {
     console.log('dandini!')
   };
 
-  const onReset = () => {r
+  const onReset = () => {
     setShowAppOptions(false);
   };
 

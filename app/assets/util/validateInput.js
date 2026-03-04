@@ -1,6 +1,11 @@
-function validateInput(input, regex, feedbackElement, type) {
-    const value = input.value.trim();
+export default function validateInput(input, regex, feedbackElement, type) {
+    console.log('validating input...', input, regex, feedbackElement, type);
 
+    function getErrorMessage (type) {
+        // (t) ? t(`invalid_${type}`) : (`invalid_${type}`)
+    }
+
+    const value = input.value.trim();
     function clearValidationWarning(...args) {
         args[0].textContent = ''
     }
@@ -23,14 +28,32 @@ function validateInput(input, regex, feedbackElement, type) {
     } else {
         input.classList.add("invalid");
         input.classList.remove("valid");
-        const msg = t(`invalid_${type}`)
+        
+        // const msg = (t) ? t(`invalid_${type}`) : (`invalid_${type}`)
+
+        let msg = getErrorMessage (type)
+        console.log('validation error message: ', msg)
+
         feedbackElement.textContent = `❌ ${msg}`;
         feedbackElement.style.display = 'block';
         feedbackElement.className = "feedback invalid-text";
     }
 
-    if ($('.invalid-text').text().length > 0) {
+    /* if ($('.invalid-text').text().length > 0) {
     } else {
         $('.passive').removeClass('passive')
+    } */
+
+    const invalidTextElements = document.querySelectorAll('.invalid-text');
+    let hasInvalidText = false;
+    invalidTextElements.forEach(el => {
+        if (el.textContent.length > 0) {
+            hasInvalidText = true;
+        }
+    });
+    if (!hasInvalidText) {
+        document.querySelectorAll('.passive').forEach(el => {
+            el.classList.remove('passive');
+        });
     }
 }

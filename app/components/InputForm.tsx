@@ -1,30 +1,20 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import { StyleSheet, TextInput } from 'react-native';
 
 type Props = {
+  id: 'name'|'email',
   placeHolder: string,
   autoCorrection: boolean,
+  onChange: (name: keyof UserData , email: string) => void,
   keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad' | 'ascii-capable' | 'url' | 'decimal-pad'
 };
 
-export default function InputForm({placeHolder, autoCorrection, keyboardType }: Props) {
-  console.log('placeHolder: ', placeHolder)
-  console.log('keyboardType: ', keyboardType)
-  const test = false;
-
-  const [val, setVal] = useState('test')
-
-  useEffect(() => {
-    console.log('val changed:  ', val)
-    if (test) {
-      setVal(val + '.')
-    }
-  }, [val, test])
-
+export default function InputForm({id, placeHolder, autoCorrection, keyboardType, onChange }: Props) {
+  //
   return (
     <TextInput style={styles.input} 
       onChangeText={(e)=>{
-        console.log('>> ', e)
+        onChange(id, e)
       }}
       autoCorrect = { autoCorrection }
       keyboardType= { keyboardType }

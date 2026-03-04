@@ -43,7 +43,7 @@ export default function TabLayout() {
               <Ionicons name={focused ? 'mail' : 'mail-outline'} color={color} size={24} />
             ),
           }}
-        />,
+        />
         <Tabs.Screen
           name="feed"
           options={{

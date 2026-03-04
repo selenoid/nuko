@@ -45,6 +45,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "0a3f9ea2-ef42-415c-8c8d-c0beb5d1cae5"
+      }
+    },
+    "owner": "selenoid"
   }
 }
