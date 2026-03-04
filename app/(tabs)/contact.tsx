@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import InputForm from '../components/InputForm';
 import { REGEX_VAULT } from '../constants';
 import { UserData } from '../types/UserData';
-import validateInput from '../assets/util/validateInput'
+// import validateInput from '../assets/util/validateInput'
 
 export default function AboutScreen() {
 
