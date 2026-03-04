@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { increment } from '../features/counterSlice'
+// import { increment } from '../features/counterSlice'
 import type { RootState, AppDispatch } from '../store/store'
 import { StyleSheet, Text, View } from 'react-native';
 import Button from '../components/Button';
@@ -8,14 +8,15 @@ import Header from '../components/Header';
 import InputForm from '../components/InputForm';
 import { REGEX_VAULT } from '../constants';
 import { UserData } from '../types/UserData';
-import { pokemonApi } from '../posts/postsApiSlice'
-import { Label } from '@react-navigation/elements';
+import { pokemonApi } from '../posts/pokemonApi'
+import { postSliceApi } from '../posts/postsApiSlice';
 // import validateInput from '../assets/util/validateInput'
 
 export default function ContactScreen() {
-  const useGetPokemonByNameQuery = pokemonApi.endpoints.getPokemonByName.useQuery
+  const useGetPokemonByNameQuery = pokemonApi.useGetPokemonByNameQuery
+  const useUpdatePostMutation = postSliceApi.usePostMutation
 
-  /* const pokemonData = useGetPokemonByNameQuery('pikachu') */
+  const [updatePost, result] = useUpdatePostMutation()
   const { data: pokemonData, error, isLoading } = useGetPokemonByNameQuery('bulbasaur')
 
 
@@ -45,7 +46,9 @@ export default function ContactScreen() {
 
   function submit() {
     console.log('\n\nsubmit..[data]', data)
-    dispatch(increment())
+    const postData = { id: '122' }
+    updatePost(postData)
+    // dispatch(increment())
 
     const mailRegex = REGEX_VAULT.emailRegex;
     const nameRegex = REGEX_VAULT.fullnameRegex;
@@ -74,11 +77,16 @@ export default function ContactScreen() {
     console.log('pokemonData changed: ', pokemonData)
   }, [pokemonData])
 
+  useEffect(() => {
+    console.log('result changed: ', result)
+  }, [result])
+
   return (
     <View style={styles.container}>
       <View>
         <Text style={styles.text}>isLoading: {isLoading ? 'Loading...' : 'isLoaded'}</Text>
         <Text style={styles.text}>Error: {error ? JSON.stringify(error) : 'None'}</Text>
+        <Text style={styles.text}>Result: {result ? (result).toString() : 'No Results found'}</Text>
       </View>
       <Header label={'Contact Us! [v]:' + value} />
 

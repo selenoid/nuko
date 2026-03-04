@@ -9,21 +9,14 @@ export interface Post {
 }
 
 // Define a service using a base URL and expected endpoints
-export const postSliceApi = createApi({
+export const pokemonApi = createApi({
   reducerPath: 'pokemonApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://api.tunceri.com/api/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://pokeapi.co/api/v2/' }),
   endpoints: (build) => ({
     getPokemonByName: build.query<{ name: string; [key: string]: any }, string>({
       query: (name) => `pokemon/${name}`,
     }),
-    post: build.mutation<Post, Partial<Post> & Pick<Post, 'id'>>({
-      query: ({ id, ...patch }) => ({
-        url: `post/${id}`,
-        method: 'PATCH',
-        body: patch,
-      }),
-    })
   }),
 })
 
-export const { usePostMutation } = postSliceApi
+export const { useGetPokemonByNameQuery } = pokemonApi
