@@ -9,14 +9,14 @@ import InputForm from '../components/InputForm';
 import { REGEX_VAULT } from '../constants';
 import { UserData } from '../types/UserData';
 import { pokemonApi } from '../posts/pokemonApi'
-import { postSliceApi } from '../posts/postsApiSlice';
+// import { postSliceApi } from '../posts/postsApiSlice';
 // import validateInput from '../assets/util/validateInput'
 
 export default function ContactScreen() {
   const useGetPokemonByNameQuery = pokemonApi.useGetPokemonByNameQuery
-  const useUpdatePostMutation = postSliceApi.usePostMutation
-
-  const [updatePost, result] = useUpdatePostMutation()
+  // const useUpdatePostMutation = postSliceApi.usePostMutation
+  const result = null;
+  // const [updatePost, result] = useUpdatePostMutation()
   const { data: pokemonData, error, isLoading } = useGetPokemonByNameQuery('bulbasaur')
 
 
@@ -26,7 +26,7 @@ export default function ContactScreen() {
   const user: UserData | undefined = { name: '', email: '' }
   const [data, setData] = useState<UserData>(user);
 
-  console.log('>> data: ', user)
+  // console.log('>> data: ', user)
 
   interface SetUserDataParams {
     id: keyof UserData;
@@ -47,7 +47,7 @@ export default function ContactScreen() {
   function submit() {
     console.log('\n\nsubmit..[data]', data)
     const postData = { id: '122' }
-    updatePost(postData)
+    // updatePost(postData)
     // dispatch(increment())
 
     const mailRegex = REGEX_VAULT.emailRegex;
@@ -74,7 +74,9 @@ export default function ContactScreen() {
   }, [data])
 
   useEffect(() => {
-    console.log('pokemonData changed: ', pokemonData)
+    const id = pokemonData?.id;
+    const name = pokemonData?.name;
+    console.log('pokemonData changed: ', id, name)
   }, [pokemonData])
 
   useEffect(() => {
@@ -86,7 +88,7 @@ export default function ContactScreen() {
       <View>
         <Text style={styles.text}>isLoading: {isLoading ? 'Loading...' : 'isLoaded'}</Text>
         <Text style={styles.text}>Error: {error ? JSON.stringify(error) : 'None'}</Text>
-        <Text style={styles.text}>Result: {result ? (result).toString() : 'No Results found'}</Text>
+        <Text style={styles.text}>Result: {result ? String(result) : 'No Results found'}</Text>
       </View>
       <Header label={'Contact Us! [v]:' + value} />
 

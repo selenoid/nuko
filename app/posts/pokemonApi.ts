@@ -13,6 +13,7 @@ export const pokemonApi = createApi({
   reducerPath: 'pokemonApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://pokeapi.co/api/v2/' }),
   endpoints: (build) => ({
+    // getPokemonByName: build.query<{ name: string; [key: string]: any }, string>({
     getPokemonByName: build.query<{ name: string; [key: string]: any }, string>({
       query: (name) => `pokemon/${name}`,
     }),

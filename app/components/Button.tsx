@@ -10,7 +10,7 @@ type Props = {
 
 export default function Button({ label, theme, onPress, icon }: Props) {
   const iconName = icon ? icon : 'picture-o';
-  console.log('>> iconName: ', iconName)
+  // console.log('>> iconName: ', iconName)
 
   if (theme === 'primary') {
     return (
