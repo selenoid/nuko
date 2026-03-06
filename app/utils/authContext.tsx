@@ -1,6 +1,8 @@
 import { useRouter } from "expo-router";
 import { createContext, PropsWithChildren, useEffect, useState } from "react";
-import AsyncStorage from '@react-native-async-storage/async-storage'
+// import AsyncStorage from '@react-native-async-storage/async-storage'
+// import AsyncStorage from '@react-native-async-storage/async-storage'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type AuthState = {
   isLoggedIn: boolean;
