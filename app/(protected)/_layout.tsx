@@ -5,6 +5,10 @@ import { useContext } from 'react';
 export default function ProtectedLayout() {
   const authState = useContext(AuthContext)
 
+  if (!authState.isReady) {
+    return null;
+  }
+
   if (!authState.isLoggedIn) {
     return <Redirect href="/login" />;
   }

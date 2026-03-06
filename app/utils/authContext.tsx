@@ -1,4 +1,4 @@
-import { useRouter } from "expo-router";
+import { SplashScreen, useRouter } from "expo-router";
 import { createContext, PropsWithChildren, useEffect, useState } from "react";
 // import AsyncStorage from '@react-native-async-storage/async-storage'
 // import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -10,7 +10,7 @@ type AuthState = {
   logIn: () => void
   logOut: () => void
 }
-
+SplashScreen.preventAutoHideAsync()
 const authStorageKey = 'auth-key'
 
 export const AuthContext = createContext<AuthState>({
@@ -30,6 +30,8 @@ export function AuthProvider({ children }: PropsWithChildren) {
     try {
       const jsonValue = JSON.stringify(newState);
       await AsyncStorage.setItem(authStorageKey, jsonValue);
+      console.log('async storage successful: ', JSON.parse(jsonValue) );
+
     } catch (error) {
       console.log('Error saving ', error)
     }
@@ -43,11 +45,22 @@ export function AuthProvider({ children }: PropsWithChildren) {
   const logOut = () => {
     setIsLoggedIn(false)
     storeAuthState({ isLoggedIn: true });
-
   }
 
   useEffect(() => {
+    if(isReady){
+      SplashScreen.hideAsync()
+    }
+  }, [isReady])
+
+  useEffect(() => {
     const getAuthFromStorage = async () => {
+      await new Promise(
+        (res) => setTimeout(
+          () => res (null), 1000
+        )
+      );
+
       try {
         const value = await AsyncStorage.getItem(authStorageKey);
         if (value !== null) {
