@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-// import { increment } from '../features/counterSlice'
-import type { RootState, AppDispatch } from '../store/store'
+// import { increment } from '../../features/counterSlice'
+import type { RootState, AppDispatch } from '../../store/store'
 import { StyleSheet, Text, View } from 'react-native';
 import Button from '../components/Button';
 import Header from '../components/Header';
 import InputForm from '../components/InputForm';
-import { REGEX_VAULT } from '../constants';
+import { REGEX_VAULT } from '../../constants';
 import { UserData } from '../types/UserData';
-import { pokemonApi } from '../posts/pokemonApi'
-// import { postSliceApi } from '../posts/postsApiSlice';
-// import validateInput from '../assets/util/validateInput'
+import { pokemonApi } from '../../posts/pokemonApi'
+// import { postSliceApi } from '../../posts/postsApiSlice';
+// import validateInput from '../../assets/util/validateInput'
 
 export default function ContactScreen() {
   const useGetPokemonByNameQuery = pokemonApi.useGetPokemonByNameQuery

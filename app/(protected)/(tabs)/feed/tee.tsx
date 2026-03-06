@@ -1,20 +1,17 @@
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import CircleButton2 from '@/app/components/CircleButton2';
+import CircleButton2 from '../../components/CircleButton2';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Button from '../../components/Button';
 import IconButton from '../../components/IconButton';
+import { AuthContext } from "../../../utils/authContext";
 
 export default function Index() {
-
+  const authContext = useContext(AuthContext)
   const [showAppOptions, setShowAppOptions] = useState<boolean>(false);
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-
-  const test = (e: void)=>{
-    console.log('test feed...', e);
-  }
 
   const starter = () => {
     console.log('dandini!')
@@ -62,8 +59,8 @@ export default function Index() {
         </View>
       ) : (
         <View style={styles.footerContainer}>
-          <Button theme="primary" label="Samsak Döveci" onPress={test} icon={"star"} />
-          <Button theme="primary" label="Coffee" onPress={() => setShowAppOptions(true)} icon={"coffee"}/>
+          <Button theme="primary" label="Auxiliary Links" onPress={authContext.logOut} icon={"star"} />
+          <Button theme="primary" label="Logout" onPress={authContext.logOut} icon={"coffee"}/>
         </View>
       )}
       {/* <EmojiPicker isVisible={isModalVisible} onClose={onModalClose}>

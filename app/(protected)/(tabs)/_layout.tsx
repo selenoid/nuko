@@ -20,7 +20,7 @@ export default function TabLayout() {
         <Tabs.Screen
           name="index"
           options={{
-            title: 'Home',
+            title: 'Homer',
             tabBarIcon: ({ color, focused }) => (
               <Ionicons name={focused ? 'home-sharp' : 'home-outline'} color={color} size={24} />
             ),
@@ -45,7 +45,7 @@ export default function TabLayout() {
           }}
         />
         <Tabs.Screen
-          name="feed"
+          name="logout"
           options={{
             title: 'Feed',
             tabBarIcon: ({ color, focused }) => (

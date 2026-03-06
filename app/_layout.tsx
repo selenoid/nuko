@@ -1,19 +1,21 @@
-import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { Provider } from 'react-redux'
 import { store } from './store/store'
-
-
+import { Stack } from 'expo-router';
+import { AuthProvider } from './utils/authContext';
 
 export default function RootLayout() {
+
   return (
     <>
+    <AuthProvider>
       <Provider store={store}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
         <StatusBar style="auto" />
-      </Provider>
+        <Stack>
+          <Stack.Screen name="(protected)" 
+          options={{ headerShown: false }} />
+        </Stack>
+      </Provider></AuthProvider>
     </>
-  );
+  )
 }
