@@ -13,7 +13,9 @@ export default function RootLayout() {
         <StatusBar style="auto" />
         <Stack>
           <Stack.Screen name="(protected)" 
-          options={{ headerShown: false }} />
+            options={{ headerShown: false }} />
+          <Stack.Screen name="login" 
+            options={{ headerShown: false, animation: 'none' }} />
         </Stack>
       </Provider></AuthProvider>
     </>

@@ -17,6 +17,10 @@ export default function Index() {
     console.log('dandini!')
   };
 
+  const test = () => {
+    console.log('test clicked!..');
+  }
+
   const onAddSticker = () => {
     console.log('on add sticker...')
     setIsModalVisible(true);
